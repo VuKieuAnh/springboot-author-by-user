@@ -26,24 +26,24 @@ public class TaskController {
         return userService.getCurrentUser();
     }
 
-    @GetMapping()
+    @GetMapping("")
     public ModelAndView listTask(){
         ModelAndView modelAndView = new ModelAndView("/task/list");
         List<Task> tasks = (List<Task>) taskService.findAllByUser(userService.getCurrentUser());
         modelAndView.addObject("tasks", tasks);
         return modelAndView;
     }
-    @RequestMapping(value = "/create/", method = RequestMethod.GET)
+    @GetMapping("/create")
     public ModelAndView showFormCreate(){
         ModelAndView modelAndView = new ModelAndView("/task/create");
         Task task = new Task();
         task.setUser(userService.getCurrentUser());
         modelAndView.addObject("task", task);
-//        modelAndView.addObject("user", userService.getCurrentUser());
+        modelAndView.addObject("user", userService.getCurrentUser());
         return modelAndView;
     }
 
-    @PostMapping("/create/")
+    @PostMapping("/create")
     public RedirectView creatTask(@ModelAttribute Task task){
         task.setUser(userService.getCurrentUser());
         taskService.save(task);

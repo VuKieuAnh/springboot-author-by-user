@@ -21,6 +21,7 @@
     <tr th:each="task: ${tasks}">
         <td th:text="${task.getName()}"></td>
         <td th:text="${task.getDescription()}"></td>
+        <td><img th:src="@{${task.getImage()}}"></td>
     </tr>
     </tbody>
 </table>

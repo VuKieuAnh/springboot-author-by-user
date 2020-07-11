@@ -52,10 +52,10 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
 //                .antMatchers("/tasks/**").access("hasRole('USER')")
-                .antMatchers("/tasks/{userId}/**").
+                .antMatchers("/tasks/create/**").
                 access(CHECKED_USER_ID)
-                .antMatchers("/tasks/create/{userId}/**").
-                access(CHECKED_USER_ID)
+                .antMatchers("/tasks/{userId}/**")
+                .access(CHECKED_USER_ID)
                 .and()
                 .authorizeRequests().antMatchers("/**").hasRole("USER")
                 .and()
